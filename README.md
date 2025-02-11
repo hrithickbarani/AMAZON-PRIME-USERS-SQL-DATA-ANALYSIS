@@ -25,7 +25,7 @@ This project analyzes the Amazon Prime users dataset to gain insights into user 
 ## Key Analysis & Insights
 ### 1. User Demographics
 - **Age Distribution:** Majority of users (48.52%) are aged 56+.
-```sql
+- ```sql
    SELECT Age, COUNT(UserID) AS UserCount 
    FROM Users 
    GROUP BY Age 
