@@ -25,6 +25,13 @@ This project analyzes the Amazon Prime users dataset to gain insights into user 
 ## Key Analysis & Insights
 ### 1. User Demographics
 - **Age Distribution:** Majority of users (48.52%) are aged 56+.
+- ```sql
+SELECT Age, COUNT(UserID) AS UserCount 
+FROM Users 
+GROUP BY Age 
+ORDER BY UserCount DESC;
+```
+
 - **Top Locations:** Cities with the highest number of users include New Jennifer, East Robert, and Johnsonside.
 - **Gender Split:** Almost equal distribution between male (50.4%) and female (49.6%) users.
 
