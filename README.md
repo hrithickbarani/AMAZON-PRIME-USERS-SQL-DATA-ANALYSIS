@@ -25,58 +25,58 @@ This project analyzes the Amazon Prime users dataset to gain insights into user 
 ## Key Analysis & Insights
 ### 1. User Demographics
 - **Age Distribution:** Majority of users (48.52%) are aged 56+.
-- ```sql
+```sql
    SELECT Age, COUNT(UserID) AS UserCount 
    FROM Users 
    GROUP BY Age 
    ORDER BY UserCount DESC;
-```sql
+```
 
 - **Top Locations:** Cities with the highest number of users include New Jennifer, East Robert, and Johnsonside.
-- ```sql
+```sql
    SELECT location, COUNT(user_id) AS user_count
    FROM amazon_prime_users
    GROUP BY location
    ORDER BY user_count DESC
    LIMIT 10;
-```sql
+```
 
 - **Gender Split:** Almost equal distribution between male (50.4%) and female (49.6%) users.
-- ```sql
+```sql
     SELECT gender, COUNT(*) AS user_count
     FROM amazon_prime_users
     GROUP BY gender;
-```sql
+```
 
 
 ### 2. Subscription Analysis
 - **Subscription Plans:** 1,271 users prefer the Annual plan, while 1,229 choose Monthly.
-- ```sql
+```sql
    SELECT Age, COUNT(UserID) AS UserCount 
    FROM Users 
    GROUP BY Age 
    ORDER BY UserCount DESC;
-```sql
+```
 
 - **Churn Rate:** 11.36% of users did not renew their membership.
-- ```sql
+```sql
    SELECT Age, COUNT(UserID) AS UserCount 
    FROM Users 
    GROUP BY Age 
    ORDER BY UserCount DESC;
-```sql
+```
 
 - **Average Subscription Duration:** 365 days, indicating a preference for annual plans.
-- ```sql
+```sql
     SELECT subscription_plan, COUNT(user_id) AS user_count
     FROM amazon_prime_users
     GROUP BY subscription_plan;
-```sql
+```
 
 
 ### 3. User Engagement
 - **Engagement Distribution:** High (845 users), Medium (834 users), Low (821 users).
-- ```sql
+```sql
    WITH UserStatus AS (
     SELECT 
         COUNT(*) AS total_users,
@@ -86,7 +86,7 @@ This project analyzes the Amazon Prime users dataset to gain insights into user 
    SELECT 
     churned_users / total_users AS churn_rate
    FROM UserStatus;
-```sql
+```
 
 - **Auto-renewal Correlation:** Higher engagement leads to higher auto-renewal rates.
 - ```sql
