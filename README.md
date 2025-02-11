@@ -30,7 +30,7 @@ SELECT Age, COUNT(UserID) AS UserCount
 FROM Users 
 GROUP BY Age 
 ORDER BY UserCount DESC;
-```
+```sql
 
 - **Top Locations:** Cities with the highest number of users include New Jennifer, East Robert, and Johnsonside.
 - **Gender Split:** Almost equal distribution between male (50.4%) and female (49.6%) users.
