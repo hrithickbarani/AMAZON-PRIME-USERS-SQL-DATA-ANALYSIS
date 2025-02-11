@@ -82,15 +82,16 @@ FROM
 ### 3. User Engagement
 - **Engagement Distribution:** High (845 users), Medium (834 users), Low (821 users).
 ```sql
-   WITH UserStatus AS (
-    SELECT 
-        COUNT(*) AS total_users,
-        SUM(CASE WHEN membership_end_date < CURDATE() THEN 1 ELSE 0 END) AS churned_users
-    FROM amazon_prime_users
-)
-   SELECT 
-    churned_users / total_users AS churn_rate
-   FROM UserStatus;
+SELECT 
+    subscription_plan,
+    AVG(CASE 
+        WHEN engagement_metrics = 'low' THEN 1
+        WHEN engagement_metrics = 'medium' THEN 2
+        WHEN engagement_metrics = 'high' THEN 3
+        ELSE NULL 
+    END) AS avg_engagement
+FROM amazon_prime_users
+GROUP BY subscription_plan;
 ```
 
 - **Auto-renewal Correlation:** Higher engagement leads to higher auto-renewal rates.
