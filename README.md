@@ -52,25 +52,30 @@ This project analyzes the Amazon Prime users dataset to gain insights into user 
 ### 2. Subscription Analysis
 - **Subscription Plans:** 1,271 users prefer the Annual plan, while 1,229 choose Monthly.
 ```sql
-   SELECT Age, COUNT(UserID) AS UserCount 
-   FROM Users 
-   GROUP BY Age 
-   ORDER BY UserCount DESC;
+    SELECT subscription_plan, COUNT(user_id) AS user_count
+    FROM amazon_prime_users
+    GROUP BY subscription_plan;
 ```
 
 - **Churn Rate:** 11.36% of users did not renew their membership.
 ```sql
-   SELECT Age, COUNT(UserID) AS UserCount 
-   FROM Users 
-   GROUP BY Age 
-   ORDER BY UserCount DESC;
+WITH UserStatus AS (
+    SELECT 
+        COUNT(*) AS total_users,
+        SUM(CASE WHEN membership_end_date < CURDATE() THEN 1 ELSE 0 END) AS churned_users
+    FROM amazon_prime_users
+)
+SELECT 
+    churned_users / total_users AS churn_rate
+FROM UserStatus;
 ```
 
 - **Average Subscription Duration:** 365 days, indicating a preference for annual plans.
 ```sql
-    SELECT subscription_plan, COUNT(user_id) AS user_count
-    FROM amazon_prime_users
-    GROUP BY subscription_plan;
+SELECT 
+    AVG(DATEDIFF(membership_end_date, membership_start_date)) AS avg_subscription_duration
+FROM 
+    amazon_prime_users;
 ```
 
 
