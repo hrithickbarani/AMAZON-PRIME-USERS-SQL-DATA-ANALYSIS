@@ -33,19 +33,76 @@ This project analyzes the Amazon Prime users dataset to gain insights into user 
 ```sql
 
 - **Top Locations:** Cities with the highest number of users include New Jennifer, East Robert, and Johnsonside.
+- ```sql
+SELECT location, COUNT(user_id) AS user_count
+FROM amazon_prime_users
+GROUP BY location
+ORDER BY user_count DESC
+LIMIT 10;
+```sql
+
 - **Gender Split:** Almost equal distribution between male (50.4%) and female (49.6%) users.
+- ```sql
+   SELECT Age, COUNT(UserID) AS UserCount 
+   FROM Users 
+   GROUP BY Age 
+   ORDER BY UserCount DESC;
+```sql
+
 
 ### 2. Subscription Analysis
 - **Subscription Plans:** 1,271 users prefer the Annual plan, while 1,229 choose Monthly.
+- ```sql
+   SELECT Age, COUNT(UserID) AS UserCount 
+   FROM Users 
+   GROUP BY Age 
+   ORDER BY UserCount DESC;
+```sql
+
 - **Churn Rate:** 11.36% of users did not renew their membership.
+- ```sql
+   SELECT Age, COUNT(UserID) AS UserCount 
+   FROM Users 
+   GROUP BY Age 
+   ORDER BY UserCount DESC;
+```sql
+
 - **Average Subscription Duration:** 365 days, indicating a preference for annual plans.
+- ```sql
+   SELECT Age, COUNT(UserID) AS UserCount 
+   FROM Users 
+   GROUP BY Age 
+   ORDER BY UserCount DESC;
+```sql
+
 
 ### 3. User Engagement
 - **Engagement Distribution:** High (845 users), Medium (834 users), Low (821 users).
+- ```sql
+   SELECT Age, COUNT(UserID) AS UserCount 
+   FROM Users 
+   GROUP BY Age 
+   ORDER BY UserCount DESC;
+```sql
+
 - **Auto-renewal Correlation:** Higher engagement leads to higher auto-renewal rates.
+- ```sql
+   SELECT Age, COUNT(UserID) AS UserCount 
+   FROM Users 
+   GROUP BY Age 
+   ORDER BY UserCount DESC;
+```sql
+
 
 ### 4. Content Preferences
 - **Popular Genres:** Drama, Horror, and Action are the most-watched genres for Annual subscribers.
+- ```sql
+   SELECT Age, COUNT(UserID) AS UserCount 
+   FROM Users 
+   GROUP BY Age 
+   ORDER BY UserCount DESC;
+```sql
+
 
 ## Technologies Used
 - Python (Pandas, NumPy, Matplotlib, Seaborn)
