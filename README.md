@@ -82,8 +82,3 @@ The goal of this project is to analyze Amazon Prime user data to:
 3. **Engagement of Recent Users**:
    - A similar proportion of new users from the last year belong to each engagement category, indicating even distribution.
 
-## Future Enhancements
-- Predict churn rate using machine learning.
-- Recommend personalized content based on engagement trends.
-- Integrate with a dashboard for real-time data visualization.
-
