@@ -1,7 +1,15 @@
 # Amazon Prime Users SQL Data Analysis
 
 ## Project Overview
-This project analyzes the Amazon Prime users dataset to gain insights into user demographics, subscription patterns, engagement levels, and content preferences. The data is loaded into a MySQL database, and various SQL queries are used to extract meaningful insights.
+This project analyzes Amazon Prime user data to gain insights into user demographics, subscription trends, engagement metrics, content preferences, and customer feedback. The goal is to identify patterns and trends that can help improve user retention, engagement, and overall satisfaction.
+
+## Problem Statement
+The goal of this project is to analyze Amazon Prime user data to:
+1. Understand user demographics (age, gender, location).
+2. Analyze subscription trends (plan preferences, churn rate, subscription duration).
+3. Evaluate user engagement (engagement scores, renewal rates).
+4. Identify content preferences (popular genres, devices used).
+5. Assess customer feedback and support interactions.
 
 ## Data Processing Steps
 1. **Import Libraries**
@@ -22,101 +30,57 @@ This project analyzes the Amazon Prime users dataset to gain insights into user 
    - Connect to MySQL and create the `amazon_prime` database if it doesn't exist.
    - Load the cleaned DataFrame into MySQL.
 
-## Key Analysis & Insights
-### 1. User Demographics
-- **Age Distribution:** Majority of users (48.52%) are aged 56+.
-```sql
-   SELECT Age, COUNT(UserID) AS UserCount 
-   FROM Users 
-   GROUP BY Age 
-   ORDER BY UserCount DESC;
-```
 
-- **Top Locations:** Cities with the highest number of users include New Jennifer, East Robert, and Johnsonside.
-```sql
-   SELECT location, COUNT(user_id) AS user_count
-   FROM amazon_prime_users
-   GROUP BY location
-   ORDER BY user_count DESC
-   LIMIT 10;
-```
+## Key Insights
 
-- **Gender Split:** Almost equal distribution between male (50.4%) and female (49.6%) users.
-```sql
-    SELECT gender, COUNT(*) AS user_count
-    FROM amazon_prime_users
-    GROUP BY gender;
-```
+### User Demographics
+1. **Age Distribution**:
+   - The majority of users (48.52%) are aged 56+.
+   - Younger users (18-25) constitute the smallest proportion (8.92%).
+2. **Gender Distribution**:
+   - The user base is almost equally distributed between genders: 50.4% male and 49.6% female.
+3. **Location**:
+   - The top locations with the highest number of users are **New Jennifer** and **East Robert**, each with 5 users.
 
+### Subscription Analysis
+1. **Subscription Plans**:
+   - **Annual Plan**: 1,271 users.
+   - **Monthly Plan**: 1,229 users.
+2. **Churn Rate**:
+   - The churn rate is **11.36%**, indicating a need for improved retention strategies.
+3. **Subscription Duration**:
+   - The average subscription duration is **365 days**, suggesting a preference for annual plans.
 
-### 2. Subscription Analysis
-- **Subscription Plans:** 1,271 users prefer the Annual plan, while 1,229 choose Monthly.
-```sql
-    SELECT subscription_plan, COUNT(user_id) AS user_count
-    FROM amazon_prime_users
-    GROUP BY subscription_plan;
-```
+### User Engagement
+1. **Engagement Scores**:
+   - Users on the **Monthly Plan** have a slightly higher average engagement score (2.01) compared to the **Annual Plan** (2.0063).
+2. **Engagement Distribution**:
+   - High engagement: 845 users.
+   - Medium engagement: 834 users.
+   - Low engagement: 821 users.
+3. **Renewal Rates**:
+   - High engagement users have a **53.4% auto-renew rate**, indicating stronger retention.
 
-- **Churn Rate:** 11.36% of users did not renew their membership.
-```sql
-WITH UserStatus AS (
-    SELECT 
-        COUNT(*) AS total_users,
-        SUM(CASE WHEN membership_end_date < CURDATE() THEN 1 ELSE 0 END) AS churned_users
-    FROM amazon_prime_users
-)
-SELECT 
-    churned_users / total_users AS churn_rate
-FROM UserStatus;
-```
+### Content Preferences
+1. **Popular Genres**:
+   - **Horror** and **Action** are the most frequently purchased genres.
+   - **Sci-Fi** is the least purchased genre.
+2. **Devices Used**:
+   - **Smartphones** are the most commonly used device (867 users), followed by **Tablets** (853 users) and **Smart TVs** (780 users).
 
-- **Average Subscription Duration:** 365 days, indicating a preference for annual plans.
-```sql
-SELECT 
-    AVG(DATEDIFF(membership_end_date, membership_start_date)) AS avg_subscription_duration
-FROM 
-    amazon_prime_users;
-```
+### Customer Feedback and Support
+1. **Feedback Ratings**:
+   - Both subscription plans receive similarly high feedback ratings: **4.00 (Annual Plan)** and **4.01 (Monthly Plan)**.
+2. **Support Interactions**:
+   - Feedback ratings are not significantly impacted by the number of customer support interactions.
 
-
-### 3. User Engagement
-- **Engagement Distribution:** High (845 users), Medium (834 users), Low (821 users).
-```sql
-SELECT 
-    subscription_plan,
-    AVG(CASE 
-        WHEN engagement_metrics = 'low' THEN 1
-        WHEN engagement_metrics = 'medium' THEN 2
-        WHEN engagement_metrics = 'high' THEN 3
-        ELSE NULL 
-    END) AS avg_engagement
-FROM amazon_prime_users
-GROUP BY subscription_plan;
-```
-
-- **Auto-renewal Correlation:** Higher engagement leads to higher auto-renewal rates.
-- ```sql
-   SELECT Age, COUNT(UserID) AS UserCount 
-   FROM Users 
-   GROUP BY Age 
-   ORDER BY UserCount DESC;
-```sql
-
-
-### 4. Content Preferences
-- **Popular Genres:** Drama, Horror, and Action are the most-watched genres for Annual subscribers.
-- ```sql
-   SELECT Age, COUNT(UserID) AS UserCount 
-   FROM Users 
-   GROUP BY Age 
-   ORDER BY UserCount DESC;
-```sql
-
-
-## Technologies Used
-- Python (Pandas, NumPy, Matplotlib, Seaborn)
-- MySQL (PyMySQL, SQLAlchemy)
-- Jupyter Notebook for analysis
+### Trend Analysis
+1. **New Users Over Time**:
+   - **January 2024** saw the highest number of new users (773), while **April 2024** had the lowest (332).
+2. **Seasonal Trends**:
+   - **Winter** has the highest number of new subscriptions (1,424 users).
+3. **Engagement of Recent Users**:
+   - A similar proportion of new users from the last year belong to each engagement category, indicating even distribution.
 
 ## Future Enhancements
 - Predict churn rate using machine learning.
