@@ -82,3 +82,11 @@ The goal of this project is to analyze Amazon Prime user data to:
 3. **Engagement of Recent Users**:
    - A similar proportion of new users from the last year belong to each engagement category, indicating even distribution.
 
+## Recommendations:
+
+-**Retention Strategies:** Personalized re-engagement campaigns, loyalty rewards, and flexible subscription plans.
+-**Engagement Optimization:** Referral programs, exclusive content perks, and targeted push notifications.
+-**Content Strategy:** Expanding popular genres like Horror & Action, promoting Sci-Fi, and introducing seasonal content offers.
+-**Device Optimization:** Enhancing mobile and Smart TV experiences with interactive features and offline downloads.
+-**Customer Support Improvements:** AI chatbots for faster query resolution and premium-tier support.
+-**Seasonal Marketing:** Winter-exclusive promotions and predictive trend-based campaigns.
